@@ -2,3 +2,5 @@
 bin/
 evidence-local/
 *.log
+__pycache__/
+*.pyc

@@ -1,0 +1,26 @@
+name: verification
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: make test check build
+      - run: go run golang.org/x/vuln/cmd/govulncheck@v1.9.0 ./...
+      - run: make up
+      - run: make integration
+      - run: make incident ID=001 && make incident ID=002 && make incident ID=003
+      - run: make demo recovery
+      - if: always()
+        run: docker compose logs --no-color
+      - if: always()
+        run: docker compose down -v

@@ -1,0 +1,12 @@
+DATABASE_URL=postgres://ledgerflow:local_demo_only@localhost:55433/ledgerflow?sslmode=disable python3 scripts/incident.py 003
+INCIDENT-003: unsafe policy failed for intended reason; corrected policy passed.
+=== RUN   TestIncident003ConcurrentSpend
+    integration_test.go:470: concurrent spend violated accounting invariant: posted=2 rejected=0 drift=[{Account:alice Cached:25 Journal:-50}]
+--- FAIL: TestIncident003ConcurrentSpend (0.13s)
+FAIL
+FAIL	github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger	0.145s
+FAIL
+=== RUN   TestIncident003ConcurrentSpend
+--- PASS: TestIncident003ConcurrentSpend (0.14s)
+PASS
+ok  	github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger	1.153s

@@ -1,0 +1,70 @@
+{
+  "transfers": [
+    {
+      "id": "82e48e95-11e1-4ac8-9e30-547a8260b378",
+      "request": {
+        "from": "alice",
+        "to": "bob",
+        "amount_minor": 100,
+        "currency": "USD"
+      },
+      "state": "posted",
+      "created_at": "2026-10-15T08:49:43.970998Z"
+    },
+    {
+      "id": "4cd9453e-0227-49f8-b72b-cc42e5f0f2a6",
+      "request": {
+        "from": "bob",
+        "to": "carol",
+        "amount_minor": 75,
+        "currency": "USD"
+      },
+      "state": "posted",
+      "created_at": "2026-10-15T08:49:43.980058Z"
+    },
+    {
+      "id": "cc432e6c-f37e-4b61-9b7e-10404d1f4769",
+      "request": {
+        "from": "carol",
+        "to": "alice",
+        "amount_minor": 25,
+        "currency": "USD"
+      },
+      "state": "posted",
+      "created_at": "2026-10-15T08:49:43.98322Z"
+    }
+  ],
+  "reconciliation": {
+    "balanced": true,
+    "account_drift": [],
+    "unbalanced_journals": 0,
+    "posted_without_journal": 0,
+    "journal_without_posted_transfer": 0
+  },
+  "accounts": [
+    {
+      "id": "alice",
+      "currency": "USD",
+      "balance_minor": 99900,
+      "system": false
+    },
+    {
+      "id": "bob",
+      "currency": "USD",
+      "balance_minor": 100050,
+      "system": false
+    },
+    {
+      "id": "carol",
+      "currency": "USD",
+      "balance_minor": 100050,
+      "system": false
+    },
+    {
+      "id": "equity",
+      "currency": "USD",
+      "balance_minor": -300000,
+      "system": true
+    }
+  ]
+}

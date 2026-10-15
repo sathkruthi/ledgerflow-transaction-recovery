@@ -1,0 +1,15 @@
+DATABASE_URL=postgres://ledgerflow:local_demo_only@localhost:55433/ledgerflow?sslmode=disable python3 scripts/incident.py 002
+INCIDENT-002: unsafe policy failed for intended reason; corrected policy passed.
+=== RUN   TestIncident002UncertainRelayAcknowledgement
+    integration_test.go:410: uncertain publication silently discarded committed pending work
+--- FAIL: TestIncident002UncertainRelayAcknowledgement (0.11s)
+FAIL
+FAIL	github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger	0.122s
+FAIL
+=== RUN   TestIncident002UncertainRelayAcknowledgement
+2026/10/15 14:19:40 INFO outbox acknowledged event_id=9d11a67b-14fd-49c9-a2dc-65bc28670459 correlation_id=9d11a67b-14fd-49c9-a2dc-65bc28670459 attempt=2
+2026/10/15 14:19:40 INFO delivery processed event_id=9d11a67b-14fd-49c9-a2dc-65bc28670459 delivery_id=1 correlation_id=9d11a67b-14fd-49c9-a2dc-65bc28670459 outcome=posted attempt=1
+2026/10/15 14:19:40 INFO delivery processed event_id=9d11a67b-14fd-49c9-a2dc-65bc28670459 delivery_id=2 correlation_id=9d11a67b-14fd-49c9-a2dc-65bc28670459 outcome=duplicate attempt=1
+--- PASS: TestIncident002UncertainRelayAcknowledgement (0.13s)
+PASS
+ok  	github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger	1.147s
