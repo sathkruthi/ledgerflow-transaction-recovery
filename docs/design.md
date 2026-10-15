@@ -1,6 +1,6 @@
 # LedgerFlow design
 
-Status: actionable pre-implementation design. Implementation and measured evidence are not yet claimed.
+Status: initial pre-implementation design preserved for traceability. Implemented contracts, measured results, and review findings are in contracts.md, verification.md, and review.md.
 
 ## Problem, scope, and release boundary
 

@@ -1,0 +1,2 @@
+relay-1  | {"time":"2026-10-15T09:02:12.903080832Z","level":"INFO","msg":"service started","mode":"relay"}
+api-1    | {"time":"2026-10-15T09:02:12.785332172Z","level":"INFO","msg":"service started","mode":"api"}

@@ -1,5 +1,5 @@
 	github.com/sathkruthi/ledgerflow-transaction-recovery/cmd/ledgerflow		coverage: 0.0% of statements
-ok  	github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger	26.301s	coverage: 61.9% of statements
+ok  	github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger	2.626s	coverage: 61.6% of statements
 github.com/sathkruthi/ledgerflow-transaction-recovery/cmd/ledgerflow/main.go:23:	main		0.0%
 github.com/sathkruthi/ledgerflow-transaction-recovery/cmd/ledgerflow/main.go:31:	run		0.0%
 github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/http.go:21:	respond		100.0%
@@ -30,8 +30,8 @@ github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:8
 github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:130:	Get		100.0%
 github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:135:	Accounts	0.0%
 github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:152:	Process		74.2%
-github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:245:	Reconcile	56.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:245:	Reconcile	55.2%
 github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/worker.go:20:	PublishOne	86.7%
 github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/worker.go:60:	ConsumeOne	85.0%
 github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/worker.go:88:	RunWorker	0.0%
-total:											(statements)	54.2%
+total:											(statements)	54.0%

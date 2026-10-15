@@ -1,0 +1,320 @@
+ Container ledgerflow-prometheus-1 Stopping 
+ Container ledgerflow-api-1 Stopping 
+ Container ledgerflow-traces-1 Stopping 
+ Container ledgerflow-grafana-1 Stopping 
+ Container ledgerflow-publisher-1 Stopping 
+ Container ledgerflow-consumer-1 Stopping 
+ Container ledgerflow-consumer-1 Stopped 
+ Container ledgerflow-consumer-1 Removing 
+ Container ledgerflow-consumer-1 Removed 
+ Container ledgerflow-api-1 Stopped 
+ Container ledgerflow-api-1 Removing 
+ Container ledgerflow-publisher-1 Stopped 
+ Container ledgerflow-publisher-1 Removing 
+ Container ledgerflow-api-1 Removed 
+ Container ledgerflow-prometheus-1 Stopped 
+ Container ledgerflow-prometheus-1 Removing 
+ Container ledgerflow-traces-1 Stopped 
+ Container ledgerflow-traces-1 Removing 
+ Container ledgerflow-publisher-1 Removed 
+ Container ledgerflow-relay-1 Stopping 
+ Container ledgerflow-prometheus-1 Removed 
+ Container ledgerflow-traces-1 Removed 
+ Container ledgerflow-relay-1 Stopped 
+ Container ledgerflow-relay-1 Removing 
+ Container ledgerflow-relay-1 Removed 
+ Container ledgerflow-init-1 Stopping 
+ Container ledgerflow-init-1 Stopped 
+ Container ledgerflow-init-1 Removing 
+ Container ledgerflow-init-1 Removed 
+ Container ledgerflow-database-1 Stopping 
+ Container ledgerflow-database-1 Stopped 
+ Container ledgerflow-database-1 Removing 
+ Container ledgerflow-database-1 Removed 
+ Container ledgerflow-grafana-1 Stopped 
+ Container ledgerflow-grafana-1 Removing 
+ Container ledgerflow-grafana-1 Removed 
+ Network ledgerflow_default Removing 
+ Network ledgerflow_default Removed 
+time="2026-10-15T14:28:03+05:30" level=warning msg="buildx Docker CLI plugin not found: falling back to the classic builder. BuildKit-only build features (multi-arch, secrets, ssh, additional contexts, ...) will not be available"
+ Image ledgerflow-review-init Building 
+ Image ledgerflow-review-init Building 
+Sending build context to Docker daemon  55.12kB
+Step 1/12 : FROM golang:1.27.2-alpine AS build
+ ---> f92b6ef800e4
+Step 2/12 : WORKDIR /src
+ ---> Using cache
+ ---> 4e5730a1f7bf
+Step 3/12 : COPY go.mod go.sum ./
+ ---> Using cache
+ ---> 6a6f6457ffe5
+Step 4/12 : RUN go mod download
+ ---> Using cache
+ ---> ffc330c25cd3
+Step 5/12 : COPY . .
+ ---> b29bb3d2fd4c
+Step 6/12 : RUN CGO_ENABLED=0 go build -trimpath -o /out/ledgerflow ./cmd/ledgerflow
+ ---> Running in 1a4cfbf80a81
+ ---> Removed intermediate container 1a4cfbf80a81
+ ---> c4ead0526c82
+Step 7/12 : FROM alpine:3.23
+ ---> 85fe1e81d675
+Step 8/12 : RUN apk add --no-cache ca-certificates && adduser -D -u 10001 app
+ ---> Using cache
+ ---> 40c5bb9693c1
+Step 9/12 : COPY --from=build /out/ledgerflow /usr/local/bin/
+ ---> ac4fdb2c800d
+Step 10/12 : USER app
+ ---> Running in 2d9be6cff2d0
+ ---> Removed intermediate container 2d9be6cff2d0
+ ---> 0a7dfff3d874
+Step 11/12 : ENTRYPOINT ["ledgerflow"]
+ ---> Running in 52a2efcd4d70
+ ---> Removed intermediate container 52a2efcd4d70
+ ---> d10e7da56dc0
+Step 12/12 : LABEL com.docker.compose.image.builder=classic
+ ---> Running in 12299ec32006
+ ---> Removed intermediate container 12299ec32006
+ ---> 7a2bd101bda4
+Successfully built 7a2bd101bda4
+Successfully tagged ledgerflow-review-init:latest
+ Image ledgerflow-review-init Built 
+ Image ledgerflow-review-init Built 
+ Image ledgerflow-review-relay Building 
+ Image ledgerflow-review-consumer Building 
+ Image ledgerflow-review-api Building 
+ Image ledgerflow-review-relay Building 
+ Image ledgerflow-review-api Building 
+ Image ledgerflow-review-consumer Building 
+Sending build context to Docker daemon  55.12kB
+Sending build context to Docker daemon  55.12kB
+Sending build context to Docker daemon  55.12kB
+Step 1/12 : FROM golang:1.27.2-alpine AS build
+Step 1/12 : FROM golang:1.27.2-alpine AS build
+Step 1/12 : FROM golang:1.27.2-alpine AS build
+ ---> f92b6ef800e4
+Step 2/12 : WORKDIR /src
+ ---> f92b6ef800e4
+Step 2/12 : WORKDIR /src
+ ---> Using cache
+ ---> 4e5730a1f7bf
+Step 3/12 : COPY go.mod go.sum ./
+ ---> f92b6ef800e4
+Step 2/12 : WORKDIR /src
+ ---> Using cache
+ ---> 4e5730a1f7bf
+Step 3/12 : COPY go.mod go.sum ./
+ ---> Using cache
+ ---> 4e5730a1f7bf
+Step 3/12 : COPY go.mod go.sum ./
+ ---> Using cache
+ ---> 6a6f6457ffe5
+Step 4/12 : RUN go mod download
+ ---> Using cache
+ ---> 6a6f6457ffe5
+Step 4/12 : RUN go mod download
+ ---> Using cache
+ ---> ffc330c25cd3
+Step 5/12 : COPY . .
+ ---> Using cache
+ ---> ffc330c25cd3
+Step 5/12 : COPY . .
+ ---> Using cache
+ ---> 6a6f6457ffe5
+Step 4/12 : RUN go mod download
+ ---> Using cache
+ ---> ffc330c25cd3
+Step 5/12 : COPY . .
+ ---> Using cache
+ ---> b29bb3d2fd4c
+Step 6/12 : RUN CGO_ENABLED=0 go build -trimpath -o /out/ledgerflow ./cmd/ledgerflow
+ ---> Using cache
+ ---> b29bb3d2fd4c
+Step 6/12 : RUN CGO_ENABLED=0 go build -trimpath -o /out/ledgerflow ./cmd/ledgerflow
+ ---> Using cache
+ ---> c4ead0526c82
+Step 7/12 : FROM alpine:3.23
+ ---> Using cache
+ ---> c4ead0526c82
+Step 7/12 : FROM alpine:3.23
+ ---> Using cache
+ ---> b29bb3d2fd4c
+Step 6/12 : RUN CGO_ENABLED=0 go build -trimpath -o /out/ledgerflow ./cmd/ledgerflow
+ ---> Using cache
+ ---> c4ead0526c82
+Step 7/12 : FROM alpine:3.23
+ ---> 85fe1e81d675
+Step 8/12 : RUN apk add --no-cache ca-certificates && adduser -D -u 10001 app
+ ---> 85fe1e81d675
+Step 8/12 : RUN apk add --no-cache ca-certificates && adduser -D -u 10001 app
+ ---> Using cache
+ ---> 40c5bb9693c1
+Step 9/12 : COPY --from=build /out/ledgerflow /usr/local/bin/
+ ---> Using cache
+ ---> 40c5bb9693c1
+Step 9/12 : COPY --from=build /out/ledgerflow /usr/local/bin/
+ ---> 85fe1e81d675
+Step 8/12 : RUN apk add --no-cache ca-certificates && adduser -D -u 10001 app
+ ---> Using cache
+ ---> 40c5bb9693c1
+Step 9/12 : COPY --from=build /out/ledgerflow /usr/local/bin/
+ ---> Using cache
+ ---> Using cache
+ ---> Using cache
+ ---> ac4fdb2c800d
+Step 10/12 : USER app
+ ---> ac4fdb2c800d
+Step 10/12 : USER app
+ ---> ac4fdb2c800d
+Step 10/12 : USER app
+ ---> Using cache
+ ---> 0a7dfff3d874
+Step 11/12 : ENTRYPOINT ["ledgerflow"]
+ ---> Using cache
+ ---> 0a7dfff3d874
+Step 11/12 : ENTRYPOINT ["ledgerflow"]
+ ---> Using cache
+ ---> 0a7dfff3d874
+Step 11/12 : ENTRYPOINT ["ledgerflow"]
+ ---> Using cache
+ ---> d10e7da56dc0
+Step 12/12 : LABEL com.docker.compose.image.builder=classic
+ ---> Using cache
+ ---> d10e7da56dc0
+Step 12/12 : LABEL com.docker.compose.image.builder=classic
+ ---> Using cache
+ ---> d10e7da56dc0
+Step 12/12 : LABEL com.docker.compose.image.builder=classic
+ ---> Using cache
+ ---> 7a2bd101bda4
+ ---> Using cache
+ ---> 7a2bd101bda4
+ ---> Using cache
+ ---> 7a2bd101bda4
+Successfully built 7a2bd101bda4
+Successfully built 7a2bd101bda4
+Successfully built 7a2bd101bda4
+Successfully tagged ledgerflow-review-relay:latest
+ Image ledgerflow-review-relay Built 
+ Image ledgerflow-review-relay Built 
+Successfully tagged ledgerflow-review-api:latest
+ Image ledgerflow-review-api Built 
+ Image ledgerflow-review-api Built 
+Successfully tagged ledgerflow-review-consumer:latest
+ Image ledgerflow-review-consumer Built 
+ Image ledgerflow-review-consumer Built 
+ Image ledgerflow-review-publisher Building 
+ Image ledgerflow-review-publisher Building 
+Sending build context to Docker daemon  55.12kB
+Step 1/12 : FROM golang:1.27.2-alpine AS build
+ ---> f92b6ef800e4
+Step 2/12 : WORKDIR /src
+ ---> Using cache
+ ---> 4e5730a1f7bf
+Step 3/12 : COPY go.mod go.sum ./
+ ---> Using cache
+ ---> 6a6f6457ffe5
+Step 4/12 : RUN go mod download
+ ---> Using cache
+ ---> ffc330c25cd3
+Step 5/12 : COPY . .
+ ---> Using cache
+ ---> b29bb3d2fd4c
+Step 6/12 : RUN CGO_ENABLED=0 go build -trimpath -o /out/ledgerflow ./cmd/ledgerflow
+ ---> Using cache
+ ---> c4ead0526c82
+Step 7/12 : FROM alpine:3.23
+ ---> 85fe1e81d675
+Step 8/12 : RUN apk add --no-cache ca-certificates && adduser -D -u 10001 app
+ ---> Using cache
+ ---> 40c5bb9693c1
+Step 9/12 : COPY --from=build /out/ledgerflow /usr/local/bin/
+ ---> Using cache
+ ---> ac4fdb2c800d
+Step 10/12 : USER app
+ ---> Using cache
+ ---> 0a7dfff3d874
+Step 11/12 : ENTRYPOINT ["ledgerflow"]
+ ---> Using cache
+ ---> d10e7da56dc0
+Step 12/12 : LABEL com.docker.compose.image.builder=classic
+ ---> Using cache
+ ---> 7a2bd101bda4
+Successfully built 7a2bd101bda4
+Successfully tagged ledgerflow-review-publisher:latest
+ Image ledgerflow-review-publisher Built 
+ Image ledgerflow-review-publisher Built 
+ Network ledgerflow-review_default Creating 
+ Network ledgerflow-review_default Creating 
+ Volume ledgerflow-review_database Creating 
+ Volume ledgerflow-review_database Creating 
+ Volume ledgerflow-review_database Created 
+ Volume ledgerflow-review_database Created 
+ Network ledgerflow-review_default Created 
+ Network ledgerflow-review_default Created 
+ Container ledgerflow-review-traces-1 Creating 
+ Container ledgerflow-review-database-1 Creating 
+ Container ledgerflow-review-prometheus-1 Creating 
+ Container ledgerflow-review-grafana-1 Creating 
+ Container ledgerflow-review-grafana-1 Created 
+ Container ledgerflow-review-prometheus-1 Created 
+ Container ledgerflow-review-database-1 Created 
+ Container ledgerflow-review-init-1 Creating 
+ Container ledgerflow-review-traces-1 Created 
+ Container ledgerflow-review-init-1 Created 
+ Container ledgerflow-review-relay-1 Creating 
+ Container ledgerflow-review-api-1 Creating 
+ Container ledgerflow-review-consumer-1 Creating 
+ Container ledgerflow-review-api-1 Created 
+ Container ledgerflow-review-consumer-1 Created 
+ Container ledgerflow-review-relay-1 Created 
+ Container ledgerflow-review-publisher-1 Creating 
+ Container ledgerflow-review-publisher-1 Created 
+ Container ledgerflow-review-grafana-1 Starting 
+ Container ledgerflow-review-database-1 Starting 
+ Container ledgerflow-review-prometheus-1 Starting 
+ Container ledgerflow-review-traces-1 Starting 
+ Container ledgerflow-review-grafana-1 Started 
+ Container ledgerflow-review-database-1 Started 
+ Container ledgerflow-review-database-1 Waiting 
+ Container ledgerflow-review-prometheus-1 Started 
+ Container ledgerflow-review-traces-1 Started 
+ Container ledgerflow-review-database-1 Healthy 
+ Container ledgerflow-review-init-1 Starting 
+ Container ledgerflow-review-init-1 Started 
+ Container ledgerflow-review-init-1 Waiting 
+ Container ledgerflow-review-init-1 Waiting 
+ Container ledgerflow-review-init-1 Waiting 
+ Container ledgerflow-review-init-1 Exited 
+ Container ledgerflow-review-relay-1 Starting 
+ Container ledgerflow-review-init-1 Exited 
+ Container ledgerflow-review-consumer-1 Starting 
+ Container ledgerflow-review-init-1 Exited 
+ Container ledgerflow-review-api-1 Starting 
+ Container ledgerflow-review-relay-1 Started 
+ Container ledgerflow-review-init-1 Waiting 
+ Container ledgerflow-review-relay-1 Waiting 
+ Container ledgerflow-review-consumer-1 Started 
+ Container ledgerflow-review-api-1 Started 
+ Container ledgerflow-review-init-1 Exited 
+ Container ledgerflow-review-relay-1 Healthy 
+ Container ledgerflow-review-publisher-1 Starting 
+ Container ledgerflow-review-publisher-1 Started 
+ Container ledgerflow-review-consumer-1 Waiting 
+ Container ledgerflow-review-grafana-1 Waiting 
+ Container ledgerflow-review-database-1 Waiting 
+ Container ledgerflow-review-publisher-1 Waiting 
+ Container ledgerflow-review-prometheus-1 Waiting 
+ Container ledgerflow-review-init-1 Waiting 
+ Container ledgerflow-review-traces-1 Waiting 
+ Container ledgerflow-review-api-1 Waiting 
+ Container ledgerflow-review-relay-1 Waiting 
+ Container ledgerflow-review-init-1 Exited 
+ Container ledgerflow-review-publisher-1 Healthy 
+ Container ledgerflow-review-consumer-1 Healthy 
+ Container ledgerflow-review-relay-1 Healthy 
+ Container ledgerflow-review-prometheus-1 Healthy 
+ Container ledgerflow-review-database-1 Healthy 
+ Container ledgerflow-review-grafana-1 Healthy 
+ Container ledgerflow-review-traces-1 Healthy 
+ Container ledgerflow-review-api-1 Healthy 
