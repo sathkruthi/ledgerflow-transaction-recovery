@@ -1,0 +1,9 @@
+goos: linux
+goarch: amd64
+pkg: github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger
+cpu: AMD Ryzen 7 7840HS w/ Radeon 780M Graphics     
+BenchmarkAcceptAndPost-16    	     703	   4490630 ns/op	   12980 B/op	     378 allocs/op
+BenchmarkAcceptAndPost-16    	     831	   4155080 ns/op	   12972 B/op	     378 allocs/op
+BenchmarkAcceptAndPost-16    	     861	   4358833 ns/op	   12982 B/op	     378 allocs/op
+PASS
+ok  	github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger	15.555s

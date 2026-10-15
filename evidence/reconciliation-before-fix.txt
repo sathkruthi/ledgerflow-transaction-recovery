@@ -1,0 +1,6 @@
+=== RUN   TestReconciliationChecksRegisteredAmount
+    integration_test.go:328: balanced wrong-amount journal escaped independent reconciliation
+--- FAIL: TestReconciliationChecksRegisteredAmount (0.08s)
+FAIL
+FAIL	github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger	0.085s
+FAIL

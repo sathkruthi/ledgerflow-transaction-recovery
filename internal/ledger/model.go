@@ -153,4 +153,6 @@ type Reconciliation struct {
 	UnbalancedJournals int64   `json:"unbalanced_journals"`
 	MissingJournals    int64   `json:"posted_without_journal"`
 	UnexpectedJournals int64   `json:"journal_without_posted_transfer"`
+	MismatchedJournals int64   `json:"journal_request_mismatch"`
+	DuplicateJournals  int64   `json:"duplicate_transfer_journals"`
 }

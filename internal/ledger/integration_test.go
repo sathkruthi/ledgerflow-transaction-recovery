@@ -267,6 +267,68 @@ func TestDeadLetterAndExplicitRetry(t *testing.T) {
 	}
 }
 
+func TestAttemptLimitAndRepairRetry(t *testing.T) {
+	s := testStore(t, 100)
+	ctx := context.Background()
+	e := accepted(t, s, "attempt-limit", Request{"alice", "bob", 25, "USD"})
+	id, err := s.Append(ctx, e)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for attempt := 1; attempt <= 8; attempt++ {
+		c, ok, err := s.ClaimDelivery(ctx, time.Second)
+		if err != nil || !ok || c.Attempts != attempt {
+			t.Fatal("claim attempt", c, ok, err)
+		}
+		if err = s.FinishDelivery(ctx, c, errors.New("synthetic transient error")); err != nil {
+			t.Fatal(err)
+		}
+		if _, err = s.Pool.Exec(ctx, "UPDATE deliveries SET next_attempt=clock_timestamp() WHERE id=$1", id); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if scalar(t, s, "SELECT count(*) FROM deliveries WHERE id=$1 AND state='dead'", id) != 1 || scalar(t, s, "SELECT count(*) FROM journals WHERE transfer_id=$1", e.ID) != 0 {
+		t.Fatal("attempt limit lost event or mutated ledger")
+	}
+	if err = s.RetryDead(ctx, id); err != nil {
+		t.Fatal(err)
+	}
+	if ok, outcome, err := s.ConsumeOne(ctx, time.Second); err != nil || !ok || outcome != "posted" {
+		t.Fatal(ok, outcome, err)
+	}
+	balanced(t, s)
+}
+
+func TestEventMustMatchRegisteredRequest(t *testing.T) {
+	s := testStore(t, 100)
+	e := accepted(t, s, "payload-integrity", Request{"alice", "bob", 25, "USD"})
+	e.Request.Amount = 26
+	if _, err := s.Process(context.Background(), e); !errors.Is(err, ErrPermanent) {
+		t.Fatal("altered event accepted", err)
+	}
+	if scalar(t, s, "SELECT count(*) FROM inbox") != 0 || scalar(t, s, "SELECT count(*) FROM journals") != 1 {
+		t.Fatal("rejected event mutated posting state")
+	}
+	balanced(t, s)
+}
+
+func TestReconciliationChecksRegisteredAmount(t *testing.T) {
+	s := testStore(t, 100)
+	e := accepted(t, s, "reconcile-amount", Request{"alice", "bob", 25, "USD"})
+	e.Request.Amount = 24
+	// A balanced but incorrect legacy posting must not pass independent reconciliation.
+	if err := legacyPost(context.Background(), s, e, nil, nil); err != nil {
+		t.Fatal(err)
+	}
+	r, err := s.Reconcile(context.Background())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if r.Balanced {
+		t.Fatal("balanced wrong-amount journal escaped independent reconciliation")
+	}
+}
+
 func TestRandomizedConcurrentAccounting(t *testing.T) {
 	for _, seed := range []int64{7, 42, 99} {
 		t.Run(fmt.Sprint(seed), func(t *testing.T) {

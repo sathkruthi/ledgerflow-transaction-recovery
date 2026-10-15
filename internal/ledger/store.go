@@ -275,6 +275,18 @@ func (s *Store) Reconcile(ctx context.Context) (Reconciliation, error) {
 	if err = tx.QueryRow(ctx, "SELECT count(*) FROM journals j LEFT JOIN transfers t ON t.id=j.transfer_id WHERE j.transfer_id IS NOT NULL AND t.state IS DISTINCT FROM 'posted'").Scan(&r.UnexpectedJournals); err != nil {
 		return r, err
 	}
-	r.Balanced = len(r.AccountDrift) == 0 && r.UnbalancedJournals == 0 && r.MissingJournals == 0 && r.UnexpectedJournals == 0
+	if err = tx.QueryRow(ctx, `SELECT count(*) FROM (
+	 SELECT j.id,t.amount,count(e.id) AS n,
+	 COALESCE(sum(e.amount) FILTER(WHERE e.account_id=t.source),0) AS source_amount,
+	 COALESCE(sum(e.amount) FILTER(WHERE e.account_id=t.destination),0) AS destination_amount
+	 FROM journals j JOIN transfers t ON t.id=j.transfer_id LEFT JOIN entries e ON e.journal_id=j.id
+	 GROUP BY j.id,t.id
+	 ) posted WHERE n<>2 OR source_amount<>-amount OR destination_amount<>amount`).Scan(&r.MismatchedJournals); err != nil {
+		return r, err
+	}
+	if err = tx.QueryRow(ctx, "SELECT count(*) FROM (SELECT transfer_id FROM journals WHERE transfer_id IS NOT NULL GROUP BY transfer_id HAVING count(*)<>1) bad").Scan(&r.DuplicateJournals); err != nil {
+		return r, err
+	}
+	r.Balanced = len(r.AccountDrift) == 0 && r.UnbalancedJournals == 0 && r.MissingJournals == 0 && r.UnexpectedJournals == 0 && r.MismatchedJournals == 0 && r.DuplicateJournals == 0
 	return r, tx.Commit(ctx)
 }

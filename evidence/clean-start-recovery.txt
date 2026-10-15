@@ -1,0 +1,2 @@
+{"phase": "crashed", "publisher_exit": 77, "event_id": "e277479c-2c03-422d-b825-c9ed153379c1", "relay_deliveries": 1, "committed_outbox_still_pending": true}
+{"phase": "recovered", "event_id": "e277479c-2c03-422d-b825-c9ed153379c1", "relay_deliveries": 2, "journals": 1, "inbox": 1, "reconciliation": {"balanced": true, "account_drift": [], "unbalanced_journals": 0, "posted_without_journal": 0, "journal_without_posted_transfer": 0}}

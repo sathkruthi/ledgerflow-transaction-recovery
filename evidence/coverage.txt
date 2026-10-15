@@ -1,0 +1,37 @@
+	github.com/sathkruthi/ledgerflow-transaction-recovery/cmd/ledgerflow		coverage: 0.0% of statements
+ok  	github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger	26.301s	coverage: 61.9% of statements
+github.com/sathkruthi/ledgerflow-transaction-recovery/cmd/ledgerflow/main.go:23:	main		0.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/cmd/ledgerflow/main.go:31:	run		0.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/http.go:21:	respond		100.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/http.go:26:	problem		100.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/http.go:29:	operation	100.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/http.go:32:	API		52.3%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/http.go:168:	Relay		0.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/model.go:34:	Validate	100.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/model.go:43:	Hash		100.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/model.go:44:	ValidateKey	100.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/model.go:57:	Validate	80.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/model.go:66:	Bytes		100.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/model.go:67:	DecodeRequest	100.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/model.go:75:	DecodeEvent	75.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/model.go:87:	decode		87.5%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/model.go:111:	RetryDelay	87.5%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/queue.go:12:	ClaimOutbox	100.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/queue.go:24:	FinishOutbox	90.9%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/queue.go:40:	Append		80.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/queue.go:48:	ClaimDelivery	80.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/queue.go:60:	FinishDelivery	88.5%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/queue.go:96:	RetryDead	69.2%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/queue.go:116:	Backlog		0.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:22:	Open		0.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:35:	Migrate		100.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:37:	Seed		71.4%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:80:	Accept		75.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:130:	Get		100.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:135:	Accounts	0.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:152:	Process		74.2%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/store.go:245:	Reconcile	56.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/worker.go:20:	PublishOne	86.7%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/worker.go:60:	ConsumeOne	85.0%
+github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger/worker.go:88:	RunWorker	0.0%
+total:											(statements)	54.2%

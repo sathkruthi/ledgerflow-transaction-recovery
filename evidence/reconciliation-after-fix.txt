@@ -1,0 +1,4 @@
+=== RUN   TestReconciliationChecksRegisteredAmount
+--- PASS: TestReconciliationChecksRegisteredAmount (0.07s)
+PASS
+ok  	github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger	0.074s

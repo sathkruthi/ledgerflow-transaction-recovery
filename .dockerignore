@@ -3,3 +3,5 @@
 evidence-local
 bin
 *.log
+__pycache__
+*.pyc

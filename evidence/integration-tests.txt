@@ -1,3 +1,4 @@
+?   	github.com/sathkruthi/ledgerflow-transaction-recovery/cmd/ledgerflow	[no test files]
 === RUN   TestConcurrentIdempotencyAcceptance
 --- PASS: TestConcurrentIdempotencyAcceptance (0.11s)
 === RUN   TestBalancedImmutableLedger
@@ -5,27 +6,34 @@
 === RUN   TestRejectionAndTransactionalRollback
 --- PASS: TestRejectionAndTransactionalRollback (0.09s)
 === RUN   TestLeaseOwnershipAndReplayAfterConsumerCrash
---- PASS: TestLeaseOwnershipAndReplayAfterConsumerCrash (0.10s)
+--- PASS: TestLeaseOwnershipAndReplayAfterConsumerCrash (0.09s)
 === RUN   TestDeadLetterAndExplicitRetry
-2026/10/15 14:18:25 INFO delivery processed event_id=46fabca8-0d59-475a-b01e-23d48412bc8b delivery_id=1 correlation_id=46fabca8-0d59-475a-b01e-23d48412bc8b outcome="" attempt=1
---- PASS: TestDeadLetterAndExplicitRetry (0.09s)
+2026/10/15 14:30:16 INFO delivery processed event_id=f63e5bf1-ea18-4277-b951-7e6e9a01c4da delivery_id=1 correlation_id=f63e5bf1-ea18-4277-b951-7e6e9a01c4da outcome="" attempt=1
+--- PASS: TestDeadLetterAndExplicitRetry (0.08s)
+=== RUN   TestAttemptLimitAndRepairRetry
+2026/10/15 14:30:16 INFO delivery processed event_id=dda7de8b-628a-4085-af96-9d3426b369e0 delivery_id=1 correlation_id=dda7de8b-628a-4085-af96-9d3426b369e0 outcome=posted attempt=1
+--- PASS: TestAttemptLimitAndRepairRetry (0.11s)
+=== RUN   TestEventMustMatchRegisteredRequest
+--- PASS: TestEventMustMatchRegisteredRequest (0.08s)
+=== RUN   TestReconciliationChecksRegisteredAmount
+--- PASS: TestReconciliationChecksRegisteredAmount (0.08s)
 === RUN   TestRandomizedConcurrentAccounting
 === RUN   TestRandomizedConcurrentAccounting/7
 === RUN   TestRandomizedConcurrentAccounting/42
 === RUN   TestRandomizedConcurrentAccounting/99
---- PASS: TestRandomizedConcurrentAccounting (1.59s)
-    --- PASS: TestRandomizedConcurrentAccounting/7 (0.51s)
-    --- PASS: TestRandomizedConcurrentAccounting/42 (0.54s)
-    --- PASS: TestRandomizedConcurrentAccounting/99 (0.55s)
+--- PASS: TestRandomizedConcurrentAccounting (1.44s)
+    --- PASS: TestRandomizedConcurrentAccounting/7 (0.47s)
+    --- PASS: TestRandomizedConcurrentAccounting/42 (0.48s)
+    --- PASS: TestRandomizedConcurrentAccounting/99 (0.49s)
 === RUN   TestIncident001DuplicatePosting
 --- PASS: TestIncident001DuplicatePosting (0.09s)
 === RUN   TestIncident002UncertainRelayAcknowledgement
-2026/10/15 14:18:27 INFO outbox acknowledged event_id=14799915-c2be-41f5-aec9-e5436418e2ca correlation_id=14799915-c2be-41f5-aec9-e5436418e2ca attempt=2
-2026/10/15 14:18:27 INFO delivery processed event_id=14799915-c2be-41f5-aec9-e5436418e2ca delivery_id=1 correlation_id=14799915-c2be-41f5-aec9-e5436418e2ca outcome=posted attempt=1
-2026/10/15 14:18:27 INFO delivery processed event_id=14799915-c2be-41f5-aec9-e5436418e2ca delivery_id=2 correlation_id=14799915-c2be-41f5-aec9-e5436418e2ca outcome=duplicate attempt=1
---- PASS: TestIncident002UncertainRelayAcknowledgement (0.11s)
+2026/10/15 14:30:18 INFO outbox acknowledged event_id=889fe7cc-ce46-4fd7-a712-36415496f8ed correlation_id=889fe7cc-ce46-4fd7-a712-36415496f8ed attempt=2
+2026/10/15 14:30:18 INFO delivery processed event_id=889fe7cc-ce46-4fd7-a712-36415496f8ed delivery_id=1 correlation_id=889fe7cc-ce46-4fd7-a712-36415496f8ed outcome=posted attempt=1
+2026/10/15 14:30:18 INFO delivery processed event_id=889fe7cc-ce46-4fd7-a712-36415496f8ed delivery_id=2 correlation_id=889fe7cc-ce46-4fd7-a712-36415496f8ed outcome=duplicate attempt=1
+--- PASS: TestIncident002UncertainRelayAcknowledgement (0.10s)
 === RUN   TestIncident003ConcurrentSpend
---- PASS: TestIncident003ConcurrentSpend (0.11s)
+--- PASS: TestIncident003ConcurrentSpend (0.10s)
 === RUN   TestHTTPContracts
 --- PASS: TestHTTPContracts (0.59s)
 === RUN   TestValidation
@@ -41,4 +49,4 @@
     --- PASS: FuzzRequest/seed#0 (0.00s)
     --- PASS: FuzzRequest/seed#1 (0.00s)
 PASS
-ok  	github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger	3.995s
+ok  	github.com/sathkruthi/ledgerflow-transaction-recovery/internal/ledger	4.047s

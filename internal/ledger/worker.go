@@ -103,6 +103,9 @@ func (s *Store) RunWorker(ctx context.Context, mode, relay string, lease time.Du
 		} else if worked {
 			log.Info("worker committed", "mode", mode, "outcome", outcome)
 		}
+		if worked && err == nil {
+			continue
+		}
 		delay := 50 * time.Millisecond
 		if err != nil {
 			delay = 250 * time.Millisecond
