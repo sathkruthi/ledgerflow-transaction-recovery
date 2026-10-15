@@ -109,3 +109,9 @@ Tests use unique isolated schemas and fail when database access is missing. Rand
 Single physical database, trusted local clients, USD only, no HA, no automatic retention, and no production security certification. Owner-level database changes can bypass application protections; reconciliation detects many resulting accounting inconsistencies but is not a defense against a malicious database owner. Trace storage is ephemeral. Readiness checks database access; worker progress is assessed through backlog, audit, and traces.
 
 Read [design](docs/design.md), [contracts](docs/contracts.md), [decisions](docs/decisions.md), [operations](docs/runbook.md), [security](docs/security.md), and [engineering review](docs/review.md). Original project code remains unlicensed by owner choice. Compiled dependency license texts appear in [third-party notices](docs/third-party-notices.md).
+
+## Running-system evidence
+
+![Actual local LedgerFlow dashboard](evidence/dashboard.png)
+
+Captured from the real local stack after 80 synthetic transfers, all posted and reconciled. The charts show observed API acceptance and durable backlog; the displayed acceptance percentile is not end-to-end posting latency. No chart values were drawn or invented.
